@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-cont">
+            <div class="ticket-color"></div>
+            <div class="ticket-id">id 1</div>
+            <div class="task-area"> this  is task 1</div>
+            <div class="ticket-lock">
+              <i class="fa-solid fa-lock"></i>
+           </div> -->
+    </div>
+    </div>
+
+    <!-- MODAL - Ticket generator window -->
+    <div class="modal-cont">
+
+        <textarea class="textArea-cont" placeholder="Enter Your Task" spellcheck="false">
+
+       </textarea>
+
+
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Write your solution here =====================================================
+        let toolbox_nodes=document.querySelectorAll('.color')
+        //console.log(toolbox_nodes)
+        
+        //console.log(All_tickets)
+        toolbox_nodes.forEach(each_color=>{
+            each_color.addEventListener('click',function(e){
+            const All_tickets=document.querySelectorAll('.ticket-cont')
+                let selected_color=each_color.classList[0]
+               for (let i=0;i<All_tickets.length;i++)
+               {
+                All_tickets[i].remove()
+               }
+
+               let filtered_tickets= ticketsArr.filter(ticket=>{
+                return selected_color===ticket.ticketColor
+               })
+               console.log(ticketsArr)
+               filtered_tickets.forEach(ticket=>{
+                createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID)
+               })
+            })
+        })
+
+
+
+        toolbox_nodes.addEventListener('dblclick', () => {
+        let allTickets = document.querySelectorAll('.ticket-cont');
+
+        // remove all the tickets from the DOM
+        allTickets.forEach(ticket => {
+        ticket.remove()
+        })
+
+        // create all tickets from ticketsArr array
+        ticketsArr.forEach(ticket => {
+        createTicket(ticket.ticketTask, ticket.ticketColor, ticket.ticketID)
+        })
+        })
+    </script>
+
+
+
+</body>
+
+</html>

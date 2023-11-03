@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn"  flag=0>
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+    <script>
+        // Write your solution here ====================================================
+        
+        // remove button background color and flag
+        const remove_button = document.querySelector('.remove-btn');
+        remove_button.addEventListener('click',function(e){
+            let flag = remove_button.getAttribute('flag')
+            if(flag==0){
+                remove_button.style.backgroundColor='red';
+                alert("delete button has been activated")
+                remove_button.setAttribute('flag',1)
+            }
+            else{
+                remove_button.style.backgroundColor="inherit";
+                remove_button.setAttribute('flag',0)
+            }             
+        })
+        // remove ticket from UI
+        let All_tickets = document.querySelectorAll(".ticket-cont")
+        All_tickets.forEach(ticket=>addEventListenertotask(ticket))
+
+        function addEventListenertotask(ticket){
+            ticket.addEventListener('click',function(e){
+                let flag = remove_button.getAttribute('flag')
+                if(flag==1){
+                    ticket.remove()
+                }
+            })
+        }
+    </script>
+
+
+
+</body>
+
+</html>
